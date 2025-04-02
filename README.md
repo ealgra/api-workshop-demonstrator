@@ -36,3 +36,8 @@ Install the fastapi package
 ```
 $ pip install "fastapi[standard]"
 ```
+Or alternatively
+```
+$ pip install -r requirements.txt
+```
+where the requirements.txt is taken from this repo
