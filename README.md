@@ -41,3 +41,9 @@ Or alternatively
 $ pip install -r requirements.txt
 ```
 where the requirements.txt is taken from this repo
+
+## Running the app
+Run the app using python from a shell that loaded the virtual env:
+```
+$ python3 -m uvicorn main:app --reload
+```
