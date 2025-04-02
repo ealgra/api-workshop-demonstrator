@@ -52,13 +52,15 @@ def put_item(item: Item, item_id: int, re: Response, if_match: Annotated[Union[s
         return updated
 
 @app.post("/items")
-def create_item(item: Item, re: Response) -> Item:
+def create_item(item: Item) -> Item:
     created = ItemService.add_item(item)
     if created is None:
        return Response(status_code=400)
     
-    re.headers.append("ETag", created.hash())
-    return JSONResponse(status_code=201, content=dict(created))
+    headers = {}
+    headers["ETag"] = created.hash()
+    headers["Location"] = f"/items/{created.id}"
+    return JSONResponse(status_code=201, content=dict(created), headers=headers)
 
 @app.delete("/items/{item_id}")
 def delete_item(item_id: int):
